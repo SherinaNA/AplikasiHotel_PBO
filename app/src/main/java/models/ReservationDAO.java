@@ -17,6 +17,7 @@ import java.util.List;
 public interface ReservationDAO {
     void insert(Reservation reservation);
     void update(Reservation reservation);
+    void delete(int id);
     Reservation get(int id);
     List<String> getId();
     List<Reservation> getAll();

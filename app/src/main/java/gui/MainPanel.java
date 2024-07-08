@@ -44,6 +44,7 @@ public class MainPanel extends javax.swing.JPanel {
         dataBooking = daoReservasi.getBookRoomData();
         dataCheckin = daoReservasi.getCheckInData();
         dataCheckout = daoReservasi.getCheckOutData();
+        
         tblCheckIn.setModel(new TabelCheckin(dataCheckin));
         tblKamar.setModel(new TabelKamar(dataKamar));
         tblBooking.setModel(new TabelBooking(dataBooking));
@@ -105,6 +106,11 @@ public class MainPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblCheckIn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCheckInMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblCheckIn);
 
         tblCheckOut.setModel(new javax.swing.table.DefaultTableModel(
@@ -203,19 +209,37 @@ public class MainPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
         int row = tblCheckOut.getSelectedRow();
-        if (row != -1) {
-            // Ambil data Reservation dari model tabel
-            Reservation reservation = dataCheckout.get(row);
+            if (row != -1) {
+                // Ambil data Reservation dari model tabel
+                Reservation reservation = dataCheckout.get(row);
 
-            // Temukan frame yang menaungi panel ini (MainPanel misalnya)
-            java.awt.Frame parentFrame = (java.awt.Frame) javax.swing.SwingUtilities.windowForComponent(this);
+                // Temukan frame yang menaungi panel ini (MainPanel misalnya)
+                java.awt.Frame parentFrame = (java.awt.Frame) javax.swing.SwingUtilities.windowForComponent(this);
 
-            // Tampilkan JDialog RincianForm dengan frame sebagai induk
-            RincianForm rincianForm = new RincianForm(parentFrame, true, reservation);
-            rincianForm.setVisible(true);
+                // Tampilkan JDialog RincianForm dengan frame sebagai induk
+                RincianForm rincianForm = new RincianForm(parentFrame, true, reservation);
+                rincianForm.setVisible(true);
+            }
         }
-    }
     }//GEN-LAST:event_tblCheckOutMouseClicked
+
+    private void tblCheckInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCheckInMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+        int row = tblCheckIn.getSelectedRow();
+            if (row != -1) {
+                // Ambil data Reservation dari model tabel
+                Reservation reservation = dataCheckin.get(row);
+
+                // Temukan frame yang menaungi panel ini (MainPanel misalnya)
+                java.awt.Frame parentFrame = (java.awt.Frame) javax.swing.SwingUtilities.windowForComponent(this);
+
+                // Tampilkan JDialog RincianForm dengan frame sebagai induk
+                RincianCheckin rincianCheckin = new RincianCheckin(parentFrame, true, reservation);
+                rincianCheckin.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_tblCheckInMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

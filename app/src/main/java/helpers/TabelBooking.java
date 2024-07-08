@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class TabelBooking extends AbstractTableModel {
     
     List<Reservation> dataBooking;
-    String[] header = {"No KTP", "Nama", "No Kamar"};
+    String[] header = {"ID", "No KTP", "Nama", "No Kamar"};
 
     // Konstruktor yang menerima data booking dari getBookRoomData()
     public TabelBooking(List<Reservation> dataBooking) {
@@ -39,14 +39,16 @@ public class TabelBooking extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Reservation booking = dataBooking.get(rowIndex);
+        Reservation reservation = dataBooking.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return booking.getTamu().getNoKtp();
+                return reservation.getId();
             case 1:
-                return booking.getTamu().getNama();
+                return reservation.getTamu().getNoKtp();
             case 2:
-                return booking.getKamar().getNoKamar();
+                return reservation.getTamu().getNama();
+            case 3:
+                return reservation.getKamar().getNoKamar();
             default:
                 return null;
         }

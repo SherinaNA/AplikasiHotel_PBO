@@ -57,6 +57,7 @@ public class ReservationSQLite implements ReservationDAO {
 
         try (Connection conn = DBConnect.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        
             pstmt.setString(1, reservation.getTamu().getNoKtp());
             pstmt.setString(2, reservation.getTamu().getNama());
             pstmt.setString(3, reservation.getKamar().getNoKamar());
@@ -72,10 +73,26 @@ public class ReservationSQLite implements ReservationDAO {
             System.out.println(e.getMessage());
         }
     }
+    
+    @Override
+    public void delete(int id) {
+        String sql = "DELETE FROM reservation WHERE id = ?";
+
+        try (Connection conn = DBConnect.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     @Override
     public Reservation get(int id) {
-        String sql = "SELECT * FROM reservation WHERE id = ?";
+        String sql = "SELECT r.*, t.noKtp, t.nama, k.noKamar, k.harga FROM reservation r " +
+                     "JOIN tamu t ON r.noKtp = t.noKtp " +
+                     "JOIN kamar k ON r.noKamar = k.noKamar " +
+                     "WHERE r.id = ?";
         Reservation reservation = null;
 
         try (Connection conn = DBConnect.connect();
@@ -85,7 +102,7 @@ public class ReservationSQLite implements ReservationDAO {
 
             if (rs.next()) {
                 Tamu tamu = new Tamu(rs.getString("noKtp"), rs.getString("nama"));
-                Kamar kamar = new Kamar(rs.getString("noKamar"));
+                Kamar kamar = new Kamar(rs.getString("noKamar"), rs.getInt("harga"));
                 reservation = new Reservation(
                         rs.getInt("id"),
                         tamu,
@@ -103,6 +120,7 @@ public class ReservationSQLite implements ReservationDAO {
         }
         return reservation;
     }
+
     
     @Override
     public List<String> getId() {
@@ -186,12 +204,12 @@ public List<Reservation> getAll() {
                         rs.getInt("id"),
                         tamu,
                         kamar,
-                        null,
-                        null,
-                        0,
-                        0,
-                        false,
-                        false
+                        rs.getString("checkInDate"),
+                        rs.getString("checkOutDate"),
+                        rs.getInt("totalPrice"),
+                        rs.getInt("deposit"),
+                        rs.getBoolean("isCheckedIn"),
+                        rs.getBoolean("isCheckedOut")
                 );
                 reservationList.add(reservation);
             }
@@ -293,16 +311,19 @@ public List<Reservation> getAll() {
     public void checkOut(int id, String checkOutDate) {
         Reservation reservation = get(id);
         if (reservation != null) {
-        String checkInDate = reservation.getCheckInDate();
-        LocalDate checkIn = LocalDate.parse(checkInDate);
-        LocalDate checkOut = LocalDate.parse(checkOutDate);
-        long daysBetween = ChronoUnit.DAYS.between(checkIn, checkOut);
-        int totalPrice = (int) daysBetween * reservation.getKamar().getHarga();
-
-        reservation.setCheckOutDate(checkOutDate);
-        reservation.setTotalPrice(totalPrice);
-        reservation.setCheckedOut(true);
-        update(reservation);
+            String checkInDate = reservation.getCheckInDate();
+            LocalDate checkIn = LocalDate.parse(checkInDate);
+            LocalDate checkOut = LocalDate.parse(checkOutDate);
+            long daysBetween = ChronoUnit.DAYS.between(checkIn, checkOut);
+            
+            int hargaKamar = reservation.getKamar().getHarga();
+            int totalPrice = (int) daysBetween * hargaKamar;
+        
+            reservation.setCheckOutDate(checkOutDate);
+            reservation.setTotalPrice(totalPrice);
+            reservation.setCheckedOut(true);
+            
+            update(reservation);
         }
     }
 }

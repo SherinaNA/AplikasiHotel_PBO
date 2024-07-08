@@ -99,7 +99,7 @@ public class KamarSQLite implements KamarDAO {
 
     @Override
     public void update(Kamar kamar) {
-        String sql = "UPDATE kamar SET noKamar = ?, jenisKamar = ?, harga = ?, isAvailable = ? WHERE id = ?";
+        String sql = "UPDATE kamar SET noKamar = ?, jenisKamar = ?, harga = ?, isAvailable = ? WHERE noKamar = ?";
 
         try (Connection conn = DBConnect.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

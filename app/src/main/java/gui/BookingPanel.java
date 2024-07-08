@@ -152,6 +152,11 @@ public class BookingPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblBooking.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBookingMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblBooking);
 
         cmbNoKtp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -252,6 +257,30 @@ public class BookingPanel extends javax.swing.JPanel {
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
+        int selectedRow = tblBooking.getSelectedRow();
+        if (selectedRow != -1) {
+            // Ambil ID reservasi dari tabel
+            int reservationId = (int) tblBooking.getValueAt(selectedRow, 0);
+
+            // Hapus reservasi dari database
+            reservationDAO.delete(reservationId);
+
+            // Refresh tabel booking
+            refreshData();
+
+            // Reset form fields
+            clearInput();
+            if (mainPage != null) {
+                mainPage.refreshData(); // Panggil method untuk refresh data di MainPage
+            }
+
+            // Disable btnHapus
+            btnHapus.setEnabled(false);
+
+            JOptionPane.showMessageDialog(this, "Reservation deleted successfully.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a reservation to delete.");
+        }
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void cmbNoKtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNoKtpActionPerformed
@@ -266,6 +295,27 @@ public class BookingPanel extends javax.swing.JPanel {
     private void cmbKamarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKamarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbKamarActionPerformed
+
+    private void tblBookingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBookingMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            editMode = true;
+            btnHapus.setEnabled(true);
+
+            int selectedRow = tblBooking.getSelectedRow();
+            if (selectedRow != -1) {
+                // Ambil data dari tabel, abaikan kolom pertama (ID)
+                String noKtp = (String) tblBooking.getValueAt(selectedRow, 1);
+                String nama = (String) tblBooking.getValueAt(selectedRow, 2);
+                String noKamar = (String) tblBooking.getValueAt(selectedRow, 3);
+
+                // Set nilai pada form
+                cmbNoKtp.setSelectedItem(noKtp);
+                txtNama.setText(nama);
+                cmbKamar.setSelectedItem(noKamar);
+            }
+        }
+    }//GEN-LAST:event_tblBookingMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -22,10 +22,10 @@ public class RincianForm extends javax.swing.JDialog {
         super(parent, modal);
         this.reservation = reservation;
         initComponents();
-        populateFields();
+        detailRincian();
     }
     
-    private void populateFields(){
+    private void detailRincian(){
         // Isi field dengan data dari reservation
         lblIdResv.setText(String.valueOf(reservation.getId()));
         lblTamuId.setText(reservation.getTamu().getNoKtp());
