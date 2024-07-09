@@ -18,7 +18,7 @@ import models.KamarSQLite;
  * @author lenovo
  */
 public class RoomsPanel extends javax.swing.JPanel {
-    
+
     KamarDAO dao;
     MainPage mainPage; // Referensi ke MainPage
     List<Kamar> dataKamar;
@@ -33,19 +33,20 @@ public class RoomsPanel extends javax.swing.JPanel {
         dao = new KamarSQLite();
         refreshData();
     }
-    
-    private void clearInput(){
+
+    private void clearInput() {
         txtNoKamar.setText("");
         txtTypeKamar.setText("");
         txtHarga.setText("");
         btnHapus.setEnabled(false);
     }
-    
-    public void refreshData(){
+
+    public void refreshData() {
         dataKamar = dao.getAll();
         tblKamar.setModel(new TabelKamar(dataKamar));
         clearInput();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -210,15 +211,15 @@ public class RoomsPanel extends javax.swing.JPanel {
 
     private void tblKamarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKamarMouseClicked
         // TODO add your handling code here:
-        if(evt.getClickCount() == 2){
+        if (evt.getClickCount() == 2) {
             editMode = true;
             btnHapus.setEnabled(true);
-            
+
             Kamar kamar = dataKamar.get(tblKamar.getSelectedRow());
             txtNoKamar.setText(kamar.getNoKamar());
             txtTypeKamar.setText(kamar.getJenisKamar());
             txtHarga.setText(String.valueOf(kamar.getHarga()));
-            
+
             txtNoKamar.setEnabled(false);
         }
     }//GEN-LAST:event_tblKamarMouseClicked

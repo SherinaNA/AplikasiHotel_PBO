@@ -5,6 +5,7 @@
 package models;
 
 import entities.Kamar;
+import entities.Reservation;
 import java.util.List;
 
 /**

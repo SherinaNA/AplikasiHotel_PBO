@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class TabelCheckout extends AbstractTableModel{
     
     List<Reservation> dataCheckout;
-    String[] header = {"Id", "No KTP", "Nama", "No Kamar", "Tgl Check-In", "Tgl Check-Out", "Total Tagihan", "Deposit", "Status"};
+    String[] header = {"ID", "No KTP", "Nama", "No Kamar", "Tgl Check-In", "Tgl Check-Out", "Total Tagihan", "Deposit", "Status"};
     
     public TabelCheckout(List<Reservation> dataCheckout) {
         this.dataCheckout = dataCheckout;

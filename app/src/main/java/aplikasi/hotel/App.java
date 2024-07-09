@@ -26,38 +26,38 @@ public class App {
     public static void main(String[] args) throws ParseException {
         setupDatabase();
         
-        // Buat instance dari DAO classes
-        AdminDAO adminDAO = new AdminSQLite();
-        TamuDAO tamuDAO = new TamuSQLite();
-        KamarDAO kamarDAO = new KamarSQLite();
-        ReservationDAO reservationDAO = new ReservationSQLite();
-        
-        Admin admin1 = new Admin("sherina", "pass123");
-        adminDAO.register(admin1);
-        
-        Tamu tamu1 = new Tamu("123456789", "John Doe", "Jl. Merdeka 1", "081234567890");
-        Tamu tamu2 = new Tamu("987654321", "Jane Doe", "Jl. Kemerdekaan 2", "089876543210");
-	Tamu tamu3 = new Tamu("331889123", "Christian Taylor", "Jl. Sadewa 17", "085123456135");
-        tamuDAO.insert(tamu1);
-        tamuDAO.insert(tamu2);
-	tamuDAO.insert(tamu3);
-        
-        Kamar kamar1 = new Kamar("101", "Single", 250000, true);
-        Kamar kamar2 = new Kamar("102", "Single", 250000, true);
-        Kamar kamar3 = new Kamar("201", "Double", 500000, true);
-        Kamar kamar4 = new Kamar("202", "Double", 500000, true);
-        Kamar kamar5 = new Kamar("301", "Family", 750000, true);
-        kamarDAO.insert(kamar1);
-        kamarDAO.insert(kamar2);
-        kamarDAO.insert(kamar3);
-        kamarDAO.insert(kamar4);
-        kamarDAO.insert(kamar5);
+//        // Buat instance dari DAO classes
+//        AdminDAO adminDAO = new AdminSQLite();
+//        TamuDAO tamuDAO = new TamuSQLite();
+//        KamarDAO kamarDAO = new KamarSQLite();
+//        ReservationDAO reservationDAO = new ReservationSQLite();
+//        
+//        Admin admin1 = new Admin("sherina", "pass123");
+//        adminDAO.register(admin1);
+//        
+//        Tamu tamu1 = new Tamu("123456789", "John Doe", "Jl. Merdeka 1", "081234567890");
+//        Tamu tamu2 = new Tamu("987654321", "Jane Doe", "Jl. Kemerdekaan 2", "089876543210");
+//	  Tamu tamu3 = new Tamu("331889123", "Christian Taylor", "Jl. Sadewa 17", "085123456135");
+//        tamuDAO.insert(tamu1);
+//        tamuDAO.insert(tamu2);
+//	  tamuDAO.insert(tamu3);
+//        
+//        Kamar kamar1 = new Kamar("101", "Single", 250000, true);
+//        Kamar kamar2 = new Kamar("102", "Single", 250000, true);
+//        Kamar kamar3 = new Kamar("201", "Double", 500000, true);
+//        Kamar kamar4 = new Kamar("202", "Double", 500000, true);
+//        Kamar kamar5 = new Kamar("301", "Family", 750000, true);
+//        kamarDAO.insert(kamar1);
+//        kamarDAO.insert(kamar2);
+//        kamarDAO.insert(kamar3);
+//        kamarDAO.insert(kamar4);
+//        kamarDAO.insert(kamar5);
 
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new MainPage().setVisible(true);
-//            }
-//        });
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainPage().setVisible(true);
+            }
+        });
     }
 }

@@ -5,6 +5,7 @@
 package models;
 
 import entities.Kamar;
+import entities.Reservation;
 import helpers.DBConnect;
 
 import java.sql.*;
@@ -58,6 +59,7 @@ public class KamarSQLite implements KamarDAO {
         return kamar;
     }
 
+    //list untuk combo box NoKamar
     @Override
     public List<String> getNoKamarAvailable() {
         List<String> noKamarList = new ArrayList<>();
@@ -99,7 +101,7 @@ public class KamarSQLite implements KamarDAO {
 
     @Override
     public void update(Kamar kamar) {
-        String sql = "UPDATE kamar SET noKamar = ?, jenisKamar = ?, harga = ?, isAvailable = ? WHERE noKamar = ?";
+        String sql = "UPDATE kamar SET jenisKamar = ?, harga = ?, isAvailable = ? WHERE noKamar = ?";
 
         try (Connection conn = DBConnect.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
