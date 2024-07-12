@@ -105,10 +105,10 @@ public class KamarSQLite implements KamarDAO {
 
         try (Connection conn = DBConnect.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, kamar.getNoKamar());
-            pstmt.setString(2, kamar.getJenisKamar());
-            pstmt.setInt(3, kamar.getHarga());
-            pstmt.setBoolean(4, kamar.isAvailable());
+            pstmt.setString(1, kamar.getJenisKamar());
+            pstmt.setInt(2, kamar.getHarga());
+            pstmt.setBoolean(3, kamar.isAvailable());
+            pstmt.setString(4, kamar.getNoKamar());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

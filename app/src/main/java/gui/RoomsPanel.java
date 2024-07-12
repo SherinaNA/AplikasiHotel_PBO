@@ -38,6 +38,7 @@ public class RoomsPanel extends javax.swing.JPanel {
         txtNoKamar.setText("");
         txtTypeKamar.setText("");
         txtHarga.setText("");
+        txtNoKamar.setEnabled(true);
         btnHapus.setEnabled(false);
     }
 
@@ -190,7 +191,7 @@ public class RoomsPanel extends javax.swing.JPanel {
                 editMode = false; // Reset edit mode setelah meng-update
             }
 
-            refreshData();
+            refreshData(); // Memperbarui tabel dan membersihkan input
         } catch (NumberFormatException e) {
             System.out.println("Input harga tidak valid: " + e.getMessage());
             JOptionPane.showMessageDialog(this, "Input harga tidak valid.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -215,7 +216,9 @@ public class RoomsPanel extends javax.swing.JPanel {
             editMode = true;
             btnHapus.setEnabled(true);
 
-            Kamar kamar = dataKamar.get(tblKamar.getSelectedRow());
+            int selectedRow = tblKamar.getSelectedRow();
+            Kamar kamar = dataKamar.get(selectedRow);
+            
             txtNoKamar.setText(kamar.getNoKamar());
             txtTypeKamar.setText(kamar.getJenisKamar());
             txtHarga.setText(String.valueOf(kamar.getHarga()));

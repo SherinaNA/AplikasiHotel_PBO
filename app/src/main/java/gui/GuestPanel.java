@@ -34,6 +34,7 @@ public class GuestPanel extends javax.swing.JPanel {
         txtNama.setText("");
         txtAlamat.setText("");
         txtNoTelp.setText("");
+        txtNoKtp.setEnabled(true);
         btnHapus.setEnabled(false);
     }
     
@@ -195,6 +196,7 @@ public class GuestPanel extends javax.swing.JPanel {
             dao.insert(tamu);
         } else {
             dao.update(tamu);
+            editMode = false; // Reset edit mode setelah meng-update
         }
 
         refreshData();
@@ -212,7 +214,9 @@ public class GuestPanel extends javax.swing.JPanel {
             editMode = true;
             btnHapus.setEnabled(true);
             
-            Tamu tamu = dataTamu.get(tblTamu.getSelectedRow());
+            int selectedRow = tblTamu.getSelectedRow();
+            Tamu tamu = dataTamu.get(selectedRow);
+        
             txtNoKtp.setText(tamu.getNoKtp());
             txtNama.setText(tamu.getNama());
             txtAlamat.setText(tamu.getAlamat());

@@ -94,10 +94,10 @@ public class TamuSQLite implements TamuDAO {
 
         try (Connection conn = DBConnect.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, tamu.getNoKtp());
-            pstmt.setString(2, tamu.getNama());
-            pstmt.setString(3, tamu.getAlamat());
-            pstmt.setString(4, tamu.getNoTelp());
+            pstmt.setString(1, tamu.getNama());
+            pstmt.setString(2, tamu.getAlamat());
+            pstmt.setString(3, tamu.getNoTelp());
+            pstmt.setString(4, tamu.getNoKtp());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

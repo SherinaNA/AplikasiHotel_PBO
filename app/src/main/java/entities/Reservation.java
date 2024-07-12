@@ -20,7 +20,7 @@ public class Reservation {
     private boolean isCheckedIn;
     private boolean isCheckedOut;
 
-    // Constructor untuk bookRoom
+    // Constructor untuk proses bookRoom
     public Reservation(Tamu tamu, Kamar kamar) {
         this.tamu = tamu;
         this.kamar = kamar;
@@ -28,7 +28,7 @@ public class Reservation {
         this.isCheckedOut = false;
     }
 
-    // Constructor untuk checkIn
+    // Constructor untuk proses checkIn
     public Reservation(int id, Tamu tamu, Kamar kamar, String checkInDate, int deposit) {
         this.id = id;
         this.tamu = tamu;
@@ -39,7 +39,7 @@ public class Reservation {
         this.isCheckedOut = false;
     }
 
-    // Constructor untuk checkOut
+    // Constructor untuk proses checkOut
     public Reservation(int id, Tamu tamu, Kamar kamar, String checkInDate, String checkOutDate, int totalPrice, int deposit) {
         this.id = id;
         this.tamu = tamu;
@@ -52,7 +52,7 @@ public class Reservation {
         this.isCheckedOut = true;
     }
 
-    // Constructor untuk mengambil data dari database
+    // Constructor untuk mengambil seluruh data dari database
     public Reservation(int id, Tamu tamu, Kamar kamar, String checkInDate, String checkOutDate, int totalPrice, int deposit, boolean isCheckedIn, boolean isCheckedOut) {
         this.id = id;
         this.tamu = tamu;
