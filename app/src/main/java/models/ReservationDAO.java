@@ -15,19 +15,19 @@ import java.util.List;
  */
 
 public interface ReservationDAO {
-    void insert(Reservation reservation);
-    void update(Reservation reservation);
-    void delete(int id);
-    Reservation get(int id);
-    List<String> getId();
-    List<Reservation> getAll();
-    List<Reservation> getBookRoomData();
-    List<Reservation> getCheckInData();
-    List<Reservation> getCheckOutData();
+    void insert(Reservation reservation); //insert data reservation
+    void update(Reservation reservation); //update data reservation
+    void delete(int id); //delete data reservation
+    Reservation get(int id); //get data reservation by id
+    List<String> getId(); //get list id dari reservation (checkin+checkout)
+    List<Reservation> getAll(); //get seluruh data dari reservation
+    List<Reservation> getBookRoomData(); //get data bookroom
+    List<Reservation> getCheckInData(); //get data checkin
+    List<Reservation> getCheckOutData(); //get data checkout
 
-    void bookRoom(Tamu tamu, Kamar kamar);
-    void checkIn(int id, String checkInDate, int deposit);
-    void checkOut(int id, String checkOutDate);
+    void bookRoom(Tamu tamu, Kamar kamar); //method batuan bookroom -> insert reservation
+    void checkIn(int id, String checkInDate, int deposit); //method update bookroom ke proses checkin
+    void checkOut(int id, String checkOutDate); //method update checkin ke proses checkout
 }
 
 

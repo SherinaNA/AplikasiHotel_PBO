@@ -14,11 +14,11 @@ import java.util.List;
  */
 
 public interface KamarDAO {
-    boolean insert(Kamar kamar);
-    Kamar get(String noKamar);
-    List<String> getNoKamarAvailable();
-    List<Kamar> getAll();
-    void update(Kamar kamar);
-    void delete(String noKamar);
+    void insert(Kamar kamar); //menambahkan data kamar
+    Kamar get(String noKamar); //get data noKamar
+    List<String> getNoKamarAvailable(); // get data noKamar yg tersedia
+    List<Kamar> getAll(); //mendapatkan seluruh data kamar yg ada
+    void update(Kamar kamar); //update data kamar
+    void delete(String noKamar); //delete data kamar
 }
 

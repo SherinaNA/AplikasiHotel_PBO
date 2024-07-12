@@ -10,6 +10,7 @@ package entities;
  */
 
 public class Kamar {
+    //attribute
     private String noKamar;
     private String jenisKamar;
     private int harga;

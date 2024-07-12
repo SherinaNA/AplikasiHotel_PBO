@@ -10,6 +10,7 @@ package entities;
  */
 
 public class Reservation {
+    //attribute
     private int id;
     private Tamu tamu;
     private Kamar kamar;

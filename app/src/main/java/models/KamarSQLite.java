@@ -20,7 +20,7 @@ import java.util.List;
 public class KamarSQLite implements KamarDAO {
 
     @Override
-    public boolean insert(Kamar kamar) {
+    public void insert(Kamar kamar) {
         String sql = "INSERT INTO kamar(noKamar, jenisKamar, harga, isAvailable) VALUES(?, ?, ?, ?)";
 
         try (Connection conn = DBConnect.connect();
@@ -30,11 +30,9 @@ public class KamarSQLite implements KamarDAO {
             pstmt.setInt(3, kamar.getHarga());
             pstmt.setBoolean(4, kamar.isAvailable());
             pstmt.executeUpdate();
-            return true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return false;
     }
 
     @Override

@@ -13,11 +13,11 @@ import java.util.List;
  */
 
 public interface TamuDAO {
-    void insert(Tamu tamu);
-    Tamu getNoKtp(String noKtp);
-    List<String> getAllNoKtp();
-    List<Tamu> getAll();
-    void update(Tamu tamu);
-    void delete(String noKtp);
+    void insert(Tamu tamu); //menambah data tamu
+    Tamu getNoKtp(String noKtp); //get data noKtp tamu
+    List<String> getAllNoKtp(); //get list daftar seluruh noKtp (booking)
+    List<Tamu> getAll(); //get seluruh data tamu
+    void update(Tamu tamu); //update data tamu
+    void delete(String noKtp); //delete data tamu
 }
 

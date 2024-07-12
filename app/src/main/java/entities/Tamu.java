@@ -10,6 +10,7 @@ package entities;
  */
 
 public class Tamu {
+    //attribute
     private String noKtp;
     private String nama;
     private String alamat;
